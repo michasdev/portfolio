@@ -1,0 +1,132 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const navItems = [
+  { label: 'INÍCIO', href: '/' },
+  { label: 'PROJETOS', href: '#projetos' },
+  { label: 'SOBRE', href: '#sobre' },
+  { label: 'GITHUB', href: 'https://github.com/freit4sdev', external: true },
+];
+---
+
+<header class:list={['fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/10', className]}>
+  <div class="flex items-stretch h-16 md:h-20">
+    <a
+      href="/"
+      class="flex items-center px-4 md:px-6 border-r border-border/10 font-sans text-sm md:text-base font-bold uppercase tracking-tight hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      M. FREITAS
+    </a>
+
+    <nav class="hidden md:flex items-stretch flex-1">
+      {navItems.slice(1).map((item, index) => (
+        <a
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+          class:list={[
+            'group flex items-center px-6 font-mono text-xs uppercase tracking-[0.1em] text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+            index < navItems.slice(1).length - 1 && 'border-r border-border/10',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden md:flex items-center gap-3 px-6 border-l border-border/10">
+      <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-muted-foreground">São Paulo</span>
+      <span id="clock" class="font-mono text-xs tracking-[0.1em] tabular-nums text-foreground">--:--:--</span>
+    </div>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menu de navegação"
+      class="md:hidden flex flex-col justify-center items-center gap-[6px] w-16 h-16 border-l border-border/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      <span class="block w-6 h-px bg-foreground origin-center transition-transform duration-200 ease"></span>
+      <span class="block w-6 h-px bg-foreground transition-opacity duration-200 ease"></span>
+      <span class="block w-6 h-px bg-foreground origin-center transition-transform duration-200 ease"></span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-x-0 top-16 bottom-0 bg-background translate-x-full transition-transform duration-200 ease md:hidden"
+  >
+    <nav class="flex flex-col h-full">
+      {navItems.map((item, index) => (
+        <a
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+          class:list={[
+            'flex items-center px-6 py-6 font-mono text-2xl uppercase tracking-[0.08em] text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+            index > 0 && 'border-t border-border/10',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const lines = toggle?.querySelectorAll('span');
+
+  if (toggle && menu && lines && lines.length === 3) {
+    const [first, middle, last] = lines;
+    let open = false;
+
+    menu.setAttribute('inert', '');
+
+    toggle.addEventListener('click', () => {
+      open = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+      menu.classList.toggle('translate-x-full', !open);
+      menu.toggleAttribute('inert', !open);
+
+      first.classList.toggle('rotate-45', open);
+      first.classList.toggle('translate-y-[7px]', open);
+      last.classList.toggle('-rotate-45', open);
+      last.classList.toggle('-translate-y-[7px]', open);
+      middle.classList.toggle('opacity-0', open);
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (open) toggle.click();
+      });
+    });
+  }
+
+  const clock = document.getElementById('clock');
+
+  if (clock) {
+    const formatter = new Intl.DateTimeFormat('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZone: 'America/Sao_Paulo',
+    });
+
+    const tick = () => {
+      clock.textContent = formatter.format(new Date());
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>
