@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const experiencia: {
+  empresa: string;
+  periodo: string;
+  descricao?: string;
+  cargos: { data: string; titulo: string; regime: string; atual: boolean }[];
+}[] = [
+  {
+    empresa: 'R2 Ventures',
+    periodo: 'SET 2025 — ATUAL',
+    descricao:
+      'Hoje atuo na plataforma geral da R2, construindo produtos e softwares internos utilizados em parcerias como Banco BMG, Stone, Cyrela, Nio, Cogna e Sólides. No dia a dia, trabalho com Go, Node.js, AWS e Terraform na evolução da plataforma, da engenharia de dados com Databricks à nossa IA conversacional, entre diversas outras frentes. Arquiteto e planejo as soluções enquanto direciono a IA para implementar, o que me deixa livre para desenhar sistemas escaláveis e resolver problemas complexos.',
+    cargos: [
+      { data: 'JAN 2026', titulo: 'Engenheiro de Software', regime: 'Tempo integral · Híbrido', atual: true },
+      { data: 'SET 2025', titulo: 'Desenvolvedor de Software', regime: 'Meio período · Estágio', atual: false },
+    ],
+  },
+  {
+    empresa: 'Focus Têxtil',
+    periodo: 'JUL 2023 — SET 2025',
+    descricao:
+      'Atuei na manutenção e desenvolvimento de websites, backends e aplicativos móveis, além de responder por chamados e demandas críticas, garantindo agilidade na resolução de problemas e continuidade dos serviços. Desenvolvi um e-commerce completo com Next.js e TypeScript e um sistema RAG (Nest.js + TypeScript) com IA para busca semântica sobre os tecidos da empresa, além de um sistema para captação e gerenciamento de peças no Showroom. Implementei novas funcionalidades em sistemas existentes, prestei manutenção em sistemas legados com correções e melhorias de desempenho e dockerizei aplicações com pipelines de CI/CD.',
+    cargos: [
+      { data: 'JAN 2025', titulo: 'Estagiário de Desenvolvimento de Software', regime: 'Presencial', atual: false },
+      { data: 'JUL 2023', titulo: 'Aprendiz de Desenvolvimento de Software', regime: 'Presencial', atual: false },
+    ],
+  },
+];
+
+const formacao = [
+  {
+    periodo: 'AGO 2026 — AGO 2030',
+    curso: 'Bacharelado em Ciências da Computação',
+    instituicao: 'FIAP',
+    modalidade: 'Presencial',
+    status: 'Em andamento',
+  },
+  {
+    periodo: 'JAN 2023 — DEZ 2025',
+    curso: 'Técnico em Desenvolvimento de Sistemas',
+    instituicao: 'ETEC Jaraguá',
+    modalidade: 'Presencial',
+    status: 'Concluído',
+  },
+];
+
+---
+
+<Layout title="Sobre — Michel de Freitas">
+  <Navbar />
+  <main class="pt-[3.375rem] md:pt-[4.25rem]">
+    <div class="border-b border-border/10 px-4 md:px-6 lg:px-10 py-3 md:py-4">
+      <p class="font-mono text-[0.6875rem] md:text-xs uppercase tracking-[0.12em] text-muted-foreground">
+        Sobre — Michel de Freitas
+      </p>
+    </div>
+
+    <section class="grid grid-cols-1 border-b border-border/10 md:grid-cols-4">
+      <div class="flex flex-col gap-8 border-b border-border/10 p-4 md:col-span-3 md:gap-10 md:border-b-0 md:border-r md:p-6 lg:p-10">
+        <h1 class="font-sans font-bold uppercase leading-[0.85] -tracking-[0.04em] text-[clamp(3.25rem,13vw,9rem)]">
+          Sobre Mim
+        </h1>
+        <div class="flex flex-col gap-4">
+          <p class="font-sans text-base md:text-lg leading-relaxed">
+            Programo desde os 12 anos e atuo profissionalmente há mais de três. Hoje sou Engenheiro de Software na R2 Ventures, no time de Dados e IA, evoluindo a plataforma de dados com Databricks e construindo sistemas internos em Go. Já passei por plataformas full-stack, aplicações com IA, ferramentas de cloud e software embarcado, em projetos para clientes como XP Investimentos, Banco BMG, Stone, Cyrela, Nio, Cogna e Sólides.
+          </p>
+          <p class="font-sans text-base md:text-lg leading-relaxed">
+            Tenho interesse especial em arquitetura de software, microsserviços, aplicações serverless, design patterns e sistemas distribuídos, temas que estudo e aplico no dia a dia. Também curso Ciências da Computação na FIAP e sigo em busca de novos desafios e aprendizados.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col bg-foreground p-4 text-background md:col-start-4 md:p-6 lg:p-8">
+        <dl class="flex flex-col">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Função</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">Engenheiro de Software</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Base</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">São Paulo, SP</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Atualmente</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">R2 Ventures</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Desde</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">Set 2025</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Clientes</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">XP · BMG · Stone · Cyrela · Nio · Cogna · Sólides</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Stack</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">Golang · TypeScript · Databricks · AWS</dd>
+          </div>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-background/20 py-3">
+            <dt class="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-background/60">Formação</dt>
+            <dd class="font-mono text-[0.6875rem] uppercase tracking-[0.08em] md:text-xs">FIAP — Ciências da Computação</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="border-b border-border/10">
+      <div class="border-b border-border/10 px-4 md:px-6 lg:px-10 py-3 md:py-4">
+        <SectionLabel class="bg-foreground text-background">Experiência</SectionLabel>
+      </div>
+      {experiencia.map((empresa) => (
+        <article class="border-b border-border/10 last:border-b-0">
+          <div class="grid grid-cols-1 gap-8 px-4 py-8 md:gap-10 md:px-6 md:py-10 lg:grid-cols-2 lg:gap-x-12 lg:px-10">
+            <div class="flex flex-col gap-2 lg:order-2">
+              <h2 class="font-sans font-bold uppercase leading-[0.95] -tracking-[0.03em] text-[clamp(2rem,6.5vw,5rem)] text-transparent [-webkit-text-stroke:1.5px_white] md:[-webkit-text-stroke:2px_white]">{empresa.empresa}</h2>
+              <span class="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground md:text-sm">{empresa.periodo}</span>
+              {empresa.descricao && (
+                <p class="mt-2 max-w-3xl font-sans text-base text-muted-foreground leading-relaxed md:text-lg">
+                  {empresa.descricao}
+                </p>
+              )}
+            </div>
+            <div class="flex flex-col lg:order-1">
+              {empresa.cargos.map((cargo) => (
+                <div class="grid grid-cols-1 gap-2 border-t border-border/10 py-5 first:border-t-0 first:pt-0 md:grid-cols-[8.5rem_1fr_auto] md:gap-6">
+                  <span class="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground md:text-sm">{cargo.data}</span>
+                  <div class="flex flex-col gap-1">
+                    <span class="font-sans text-base font-medium md:text-lg lg:text-xl">{cargo.titulo}</span>
+                    {cargo.regime && (
+                      <span class="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">{cargo.regime}</span>
+                    )}
+                  </div>
+                  {cargo.atual && (
+                    <span class="w-fit bg-foreground px-2 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-background">Atual</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="bg-foreground text-background">
+      <div class="border-b border-background/10 px-4 md:px-6 lg:px-10 py-3 md:py-4">
+        <SectionLabel class="bg-background text-foreground">Formação</SectionLabel>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        {formacao.map((item) => (
+          <article class="flex flex-col gap-8 border-b border-background/10 p-4 last:border-b-0 md:border-b-0 md:border-r md:p-6 md:last:border-r-0 lg:p-10">
+            <div class="flex items-start justify-between gap-4">
+              <p class="font-sans text-sm text-background/70 md:text-base">{item.curso}</p>
+              <span class="w-fit shrink-0 bg-background px-2 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-foreground">{item.status}</span>
+            </div>
+            <div class="flex flex-col gap-3">
+              <h2 class="font-sans font-bold uppercase leading-[0.9] -tracking-[0.04em] text-[clamp(2rem,5vw,4rem)]">{item.instituicao}</h2>
+              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-background/60 md:text-xs">{item.periodo} · {item.modalidade}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

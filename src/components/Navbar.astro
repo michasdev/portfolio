@@ -8,18 +8,25 @@ const { class: className } = Astro.props;
 const navItems = [
   { label: 'INÍCIO', href: '/' },
   { label: 'PROJETOS', href: '#projetos' },
-  { label: 'SOBRE', href: '#sobre' },
+  { label: 'SOBRE', href: '/sobre' },
   { label: 'GITHUB', href: 'https://github.com/freit4sdev', external: true },
 ];
 ---
 
 <header class:list={['fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/10', className]}>
-  <div class="flex items-stretch h-16 md:h-20">
+  <div class="flex items-stretch h-[3.375rem] md:h-[4.25rem]">
     <a
       href="/"
-      class="flex items-center px-4 md:px-6 border-r border-border/10 font-sans text-sm md:text-base font-bold uppercase tracking-tight hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      aria-label="Michel de Freitas — Início"
+      class="group flex items-center px-4 md:px-6 lg:px-10 border-r border-border/10 hover:bg-foreground transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      M. FREITAS
+      <span
+        class="relative flex h-[2.2em] items-end text-[1.125rem] md:text-[1.25rem] font-bold uppercase leading-none tracking-tight"
+        aria-hidden="true"
+      >
+        <span class="absolute bottom-0 left-0 h-[2.2em] w-[2.2em] bg-foreground transition-colors duration-200 ease group-hover:bg-background"></span>
+        <span class="relative ml-[0.55em] text-foreground mix-blend-difference">MICHEL</span>
+      </span>
     </a>
 
     <nav class="hidden md:flex items-stretch flex-1">
@@ -29,7 +36,7 @@ const navItems = [
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noopener noreferrer' : undefined}
           class:list={[
-            'group flex items-center px-6 font-mono text-xs uppercase tracking-[0.1em] text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+            'group flex items-center px-6 lg:px-10 font-mono text-xs uppercase tracking-[0.1em] text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 ease focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background',
             index < navItems.slice(1).length - 1 && 'border-r border-border/10',
           ]}
         >
@@ -38,7 +45,7 @@ const navItems = [
       ))}
     </nav>
 
-    <div class="hidden md:flex items-center gap-3 px-6 border-l border-border/10">
+    <div class="hidden md:flex items-center gap-3 px-6 lg:px-10 border-l border-border/10">
       <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-muted-foreground">São Paulo</span>
       <span id="clock" class="font-mono text-xs tracking-[0.1em] tabular-nums text-foreground">--:--:--</span>
     </div>
@@ -49,7 +56,7 @@ const navItems = [
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Abrir menu de navegação"
-      class="md:hidden flex flex-col justify-center items-center gap-[6px] w-16 h-16 border-l border-border/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      class="md:hidden flex flex-col justify-center items-center gap-[6px] w-[3.375rem] h-[3.375rem] border-l border-border/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <span class="block w-6 h-px bg-foreground origin-center transition-transform duration-200 ease"></span>
       <span class="block w-6 h-px bg-foreground transition-opacity duration-200 ease"></span>
@@ -59,7 +66,7 @@ const navItems = [
 
   <div
     id="mobile-menu"
-    class="fixed inset-x-0 top-16 bottom-0 bg-background translate-x-full transition-transform duration-200 ease md:hidden"
+    class="fixed inset-x-0 top-[3.375rem] bottom-0 bg-background translate-x-full transition-transform duration-200 ease md:hidden"
   >
     <nav class="flex flex-col h-full">
       {navItems.map((item, index) => (
